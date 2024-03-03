@@ -1,0 +1,53 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-385,-224",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port pcie_refclk -pg 1 -lvl 0 -x 0 -y 550 -defaultsOSRD
+preplace port pcie_mgt -pg 1 -lvl 0 -x 0 -y 570 -defaultsOSRD -left
+preplace port ddr4_bank0_clk -pg 1 -lvl 0 -x 0 -y 260 -defaultsOSRD
+preplace port m0_ddr4 -pg 1 -lvl 5 -x 1460 -y 260 -defaultsOSRD
+preplace portBus ddr4_bank0_calib -pg 1 -lvl 5 -x 1460 -y 750 -defaultsOSRD
+preplace inst pcie_bridge -pg 1 -lvl 1 -x 150 -y 550 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43} -defaultsOSRD -pinDir pcie_mgt_0 left -pinY pcie_mgt_0 20L -pinDir pcie_refclk left -pinY pcie_refclk 0L -pinDir M_AXI_B right -pinY M_AXI_B 0R -pinDir axi_aclk right -pinY axi_aclk 20R -pinDir axi_aresetn right -pinY axi_aresetn 40R
+preplace inst axi_interconnect -pg 1 -lvl 3 -x 780 -y 320 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 75 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 37 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 98 96 101 99 100 97 102} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 30L -pinDir M00_AXI right -pinY M00_AXI 20R -pinDir M01_AXI right -pinY M01_AXI 0R -pinDir ACLK left -pinY ACLK 50L -pinDir ARESETN left -pinY ARESETN 110L -pinDir S00_ACLK left -pinY S00_ACLK 70L -pinDir S00_ARESETN left -pinY S00_ARESETN 130L -pinDir M00_ACLK right -pinY M00_ACLK 80R -pinDir M00_ARESETN right -pinY M00_ARESETN 100R -pinDir M01_ACLK left -pinY M01_ACLK 90L -pinDir M01_ARESETN left -pinY M01_ARESETN 150L
+preplace inst led_inverter -pg 1 -lvl 4 -x 1230 -y 730 -defaultsOSRD -pinBusDir Op1 right -pinBusY Op1 0R -pinBusDir Res right -pinBusY Res 20R
+preplace inst system_ila_0 -pg 1 -lvl 4 -x 1230 -y 530 -swap {34 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 72 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 0 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94} -defaultsOSRD -pinDir SLOT_0_AXI left -pinY SLOT_0_AXI 20L -pinDir SLOT_1_AXI left -pinY SLOT_1_AXI 40L -pinDir SLOT_2_AXI left -pinY SLOT_2_AXI 0L -pinDir clk left -pinY clk 60L -pinDir resetn left -pinY resetn 80L -pinBusDir probe0 left -pinBusY probe0 100L
+preplace inst channel_0 -pg 1 -lvl 4 -x 1230 -y 260 -swap {38 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 0 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 59 63 58 62 60 61 56 57} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 80L -pinDir ddr4_clk left -pinY ddr4_clk 0L -pinDir ddr4 right -pinY ddr4 0R -pinDir ram_clk left -pinY ram_clk 140L -pinDir init_calib_complete right -pinY init_calib_complete 60R -pinDir sys_rst left -pinY sys_rst 120L -pinDir sys_clk left -pinY sys_clk 180L -pinBusDir ram_resetn_out left -pinBusY ram_resetn_out 160L -pinDir ram_reset_out right -pinY ram_reset_out 40R -pinDir sys_sync_start left -pinY sys_sync_start 100L -pinDir erase_idle right -pinY erase_idle 20R
+preplace inst aximm_window -pg 1 -lvl 2 -x 430 -y 650 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir S_AXI left -pinY S_AXI 0L -pinBusDir window_addr right -pinBusY window_addr 20R
+preplace inst sys_control -pg 1 -lvl 4 -x 1230 -y 60 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 21 20 23 26 24 25 22} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 40L -pinDir resetn left -pinY resetn 20L -pinDir sys_reset_out left -pinY sys_reset_out 80L -pinDir erase_ram left -pinY erase_ram 100L -pinDir bank0_calib_complete right -pinY bank0_calib_complete 80R -pinDir bank0_erase_idle right -pinY bank0_erase_idle 100R -pinBusDir window_addr left -pinBusY window_addr 60L
+preplace netloc S00_ACLK_1 1 1 3 NJ 570 600 550 940
+preplace netloc S00_ARESETN_1 1 1 3 NJ 590 580 80 NJ
+preplace netloc ddr4_0_c0_ddr4_ui_clk 1 3 1 N 400
+preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 3 1 N 420
+preplace netloc ddr4_0_c0_init_calib_complete 1 4 1 1440 140n
+preplace netloc led_inverter_Res 1 4 1 NJ 750
+preplace netloc sys_control_0_sys_reset_out 1 3 1 1020 140n
+preplace netloc sys_control_0_erase_ram 1 3 1 1040 160n
+preplace netloc channel_0_idle 1 4 1 1420 160n
+preplace netloc sys_control_window_addr 1 2 2 NJ 670 980
+preplace netloc C0_SYS_CLK_0_1 1 0 4 NJ 260 NJ 260 NJ 260 NJ
+preplace netloc CLK_IN_D_0_1 1 0 1 NJ 550
+preplace netloc axi_interconnect_0_M00_AXI 1 3 1 N 340
+preplace netloc ddr4_0_C0_DDR4 1 4 1 NJ 260
+preplace netloc pcie_bridge_pcie_mgt 1 0 1 NJ 570
+preplace netloc SYS_CONTROl 1 3 1 1000 60n
+preplace netloc AXIMM_IN 1 1 3 280 530 NJ 530 960J
+preplace netloc AXIMM_OUT 1 2 2 620 570 N
+levelinfo -pg 1 0 150 430 780 1230 1460
+pagesize -pg 1 -db -bbox -sgen -170 0 1670 810
+",
+   "No Loops_ScaleFactor":"0.644444",
+   "No Loops_TopLeft":"-241,0",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace inst pcie_bridge -pg 1 -lvl 2 -x 480 -y -220 -defaultsOSRD
+preplace inst util_ds_buf_0 -pg 1 -lvl 1 -x 140 -y -200 -defaultsOSRD
+levelinfo -pg 1 -20 140 480 660
+pagesize -pg 1 -db -bbox -sgen -20 -480 660 260
+"
+}
+0
