@@ -15,7 +15,7 @@ module fill_ram #
 (
     parameter       DW         = 512,
     parameter[ 7:0] FILL_VALUE = 8'hFC,
-    parameter[63:0] BASE_ADDR  = 64'h10_0000_0000
+    parameter       CHANNEL    = 0
 )
 (
     (* X_INTERFACE_INFO      = "xilinx.com:signal:clock:1.0 ram_clk CLK"            *)
@@ -80,6 +80,9 @@ module fill_ram #
 
 // Include size definitions that descibe our hardware
 `include "geometry.vh"
+
+// Determine the base address of our bank of RAM
+localparam[63:0] BASE_ADDR = (CHANNEL==0) ? BANK0_BASE_ADDR : BANK1_BASE_ADDR;
 
 //=============================================================================
 // This block synchronizes "sys_sync_start" into "ram_sync_start"

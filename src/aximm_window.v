@@ -15,11 +15,16 @@
 
 module aximm_window #
 (
-    parameter       DW           = 512,
-    parameter       AW           = 64,
-    parameter[63:0] WINDOW_START = 64'h10_0000_0000
+    parameter       DW   = 512,
+    parameter       AW   = 64,
+    parameter[63:0] BAR1 = 64'h10_0000_0000
 )
 (
+    // This clock input is here only to prevent Vivado from whining about
+    // these AXI interfaces noit being associated with any clock
+    input                                   clk,
+    
+    // This is the AXI address that PCIe BAR 1 maps to
     input[AW-1:0]                           window_addr,
 
     //=================   This is the AXI4 input interface   ==================
@@ -119,7 +124,7 @@ module aximm_window #
 );
 
 // Master AW-channel
-assign M_AXI_AWADDR  = (S_AXI_AWADDR < WINDOW_START) ? S_AXI_AWADDR : S_AXI_AWADDR + window_addr;             
+assign M_AXI_AWADDR  = (S_AXI_AWADDR < BAR1) ?  S_AXI_AWADDR : window_addr + (S_AXI_AWADDR - BAR1);             
 assign M_AXI_AWLEN   = S_AXI_AWLEN  ;         
 assign M_AXI_AWSIZE  = S_AXI_AWSIZE ;         
 assign M_AXI_AWID    = S_AXI_AWID   ;         
@@ -140,7 +145,7 @@ assign M_AXI_WLAST  = S_AXI_WLAST ;
 assign M_AXI_BREADY = S_AXI_BREADY;
 
 // Master AR-channel
-assign M_AXI_ARADDR  = (S_AXI_ARADDR < WINDOW_START) ? S_AXI_ARADDR : S_AXI_ARADDR + window_addr;             
+assign M_AXI_ARADDR  = (S_AXI_ARADDR < BAR1) ?  S_AXI_ARADDR : window_addr + (S_AXI_ARADDR - BAR1);             
 assign M_AXI_ARVALID = S_AXI_ARVALID;       
 assign M_AXI_ARPROT  = S_AXI_ARPROT ;       
 assign M_AXI_ARLOCK  = S_AXI_ARLOCK ;       

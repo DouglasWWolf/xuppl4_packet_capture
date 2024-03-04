@@ -18,8 +18,8 @@ set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
 #
 # 100 MHz system clock 
 #
-#set_property -dict {PACKAGE_PIN AJ28 IOSTANDARD LVCMOS18} [get_ports init_clk]
-#create_clock -period 10.000 [get_ports init_clk]
+set_property -dict {PACKAGE_PIN AJ28 IOSTANDARD LVCMOS18} [get_ports init_clk]
+create_clock -period 10.000 [get_ports init_clk]
 
 
 #
@@ -51,8 +51,8 @@ set_clock_groups -group [get_clocks pcie_sys_clk -include_generated_clocks] -asy
 # Use CMAC X0Y2, transceivers X0Y16 thru X0Y19
 #
 # MGTREFCLK0 for Quad 128  
-#set_property PACKAGE_PIN N33 [get_ports qsfp0_clk_clk_p]
-#set_property PACKAGE_PIN N34 [get_ports qsfp0_clk_clk_n]
+set_property PACKAGE_PIN N33 [get_ports qsfp0_clk_clk_p]
+set_property PACKAGE_PIN N34 [get_ports qsfp0_clk_clk_n]
 
 
 #
@@ -64,11 +64,6 @@ set_clock_groups -group [get_clocks pcie_sys_clk -include_generated_clocks] -asy
 #set_property PACKAGE_PIN AE33 [get_ports qsfp1_clk_clk_p]
 #set_property PACKAGE_PIN Ae34 [get_ports qsfp1_clk_clk_n]
 
-
-
-
-#create_clock -period 3.103 -name gt_ref_clk  [get_ports gt_ref_clk_p]
-#set_clock_groups -group [get_clocks gt_ref_clk -include_generated_clocks] -asynchronous
 
 
 

@@ -15,14 +15,23 @@ module sys_control
 (
     input clk, resetn,
 
+    // Reset for everything downstream
     output reg sys_reset_out,
 
+    // This strobes high to start the "erase RAM" process
     output reg  erase_ram,
 
+    // When this is asserted, incoming packets are allowed
+    // to flow from the CMAC  into the rest of the system
+    output reg  packet_gate,
+
+    // When this is asserted, RAM bank 0 has completed calibration
     input  bank0_calib_complete,
 
+    // When this is asserted, RAM bank 0 is idle
     input  bank0_erase_idle,
 
+    // This is the AXI address that PCIe BAR1 maps to
     output reg [63:0] window_addr,
 
     //================== This is an AXI4-Lite slave interface ==================
@@ -227,12 +236,10 @@ always @(posedge clk) begin
             REG_WINDOW_ADDRH:   ashi_rdata <= window_addr[63:32];
             REG_WINDOW_ADDRL:   ashi_rdata <= window_addr[31:00];
 
-            // Reads of any other register are a decode-error
-            default:
-                begin
-                    ashi_rdata <= 32'hDEAD_BEEF;
-                    ashi_rresp <= DECERR;
-                end
+            // Because we are a 32-bit slave on a 512-bit bus, every
+            // read operation will be 16-consecutive read operations.
+            // Don't return a DECERR for any of them.
+            default:            ashi_rdata <= 0;
         endcase
     end
 end
@@ -254,10 +261,12 @@ always @(posedge clk) begin
     if (resetn == 0) begin
         csm_state     <= 0;
         sys_reset_out <= 0;
+        packet_gate   <= 0;
     end else case(csm_state)
 
         // If told to start a capture, put everything down stream in reset
         0:  if (start_capture) begin
+                packet_gate   <= 0;
                 sys_reset_out <= 1;
                 delay         <= 20;
                 csm_state     <= csm_state + 1;
@@ -281,9 +290,13 @@ always @(posedge clk) begin
         // Wait for both RAM bank erasers to be doing their thing
         3:  if (bank_erase_idle == 0) csm_state <= csm_state + 1;
 
-        // Now wait for both RAM bank erases to finish their job
-        4:  if (bank_erase_idle == 1) csm_state <= 0;
-
+        // Once both banks of RAM have been erased, open the gate
+        // that allows packets to flow into the system
+        4:  if (bank_erase_idle == 1) begin
+                packet_gate <= 1;
+                csm_state   <= 0;   
+            end
+         
     endcase
 end
 //==========================================================================

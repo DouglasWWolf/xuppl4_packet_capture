@@ -4,8 +4,8 @@ proc init_gui { IPINST } {
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "AW" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "BAR1" -parent ${Page_0}
   ipgui::add_param $IPINST -name "DW" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "WINDOW_START" -parent ${Page_0}
 
 
 }
@@ -19,21 +19,21 @@ proc validate_PARAM_VALUE.AW { PARAM_VALUE.AW } {
 	return true
 }
 
+proc update_PARAM_VALUE.BAR1 { PARAM_VALUE.BAR1 } {
+	# Procedure called to update BAR1 when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.BAR1 { PARAM_VALUE.BAR1 } {
+	# Procedure called to validate BAR1
+	return true
+}
+
 proc update_PARAM_VALUE.DW { PARAM_VALUE.DW } {
 	# Procedure called to update DW when any of the dependent parameters in the arguments change
 }
 
 proc validate_PARAM_VALUE.DW { PARAM_VALUE.DW } {
 	# Procedure called to validate DW
-	return true
-}
-
-proc update_PARAM_VALUE.WINDOW_START { PARAM_VALUE.WINDOW_START } {
-	# Procedure called to update WINDOW_START when any of the dependent parameters in the arguments change
-}
-
-proc validate_PARAM_VALUE.WINDOW_START { PARAM_VALUE.WINDOW_START } {
-	# Procedure called to validate WINDOW_START
 	return true
 }
 
@@ -48,8 +48,8 @@ proc update_MODELPARAM_VALUE.AW { MODELPARAM_VALUE.AW PARAM_VALUE.AW } {
 	set_property value [get_property value ${PARAM_VALUE.AW}] ${MODELPARAM_VALUE.AW}
 }
 
-proc update_MODELPARAM_VALUE.WINDOW_START { MODELPARAM_VALUE.WINDOW_START PARAM_VALUE.WINDOW_START } {
+proc update_MODELPARAM_VALUE.BAR1 { MODELPARAM_VALUE.BAR1 PARAM_VALUE.BAR1 } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.WINDOW_START}] ${MODELPARAM_VALUE.WINDOW_START}
+	set_property value [get_property value ${PARAM_VALUE.BAR1}] ${MODELPARAM_VALUE.BAR1}
 }
 
