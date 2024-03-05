@@ -559,7 +559,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>start_ts_timer_async</spirit:name>
+        <spirit:name>capture_async</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -719,6 +719,11 @@
         <spirit:displayName>Clock Type</spirit:displayName>
         <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLOCK_TYPE">independent_clock</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>CHANNEL</spirit:name>
+        <spirit:displayName>Channel</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CHANNEL">0</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:description>xilinx.com:module_ref:add_header:1.0</spirit:description>
@@ -737,6 +742,11 @@
       <spirit:name>CLOCK_TYPE</spirit:name>
       <spirit:displayName>Clock Type</spirit:displayName>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.CLOCK_TYPE">independent_clock</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>CHANNEL</spirit:name>
+      <spirit:displayName>Channel</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.CHANNEL">0</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>

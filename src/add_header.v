@@ -12,7 +12,7 @@
     the output stream preceded by a header
 */
 
-module add_header # (DW = 512, FIFO_DEPTH = 256, CLOCK_TYPE="independent_clock")
+module add_header # (DW=512, FIFO_DEPTH=256, CLOCK_TYPE="independent_clock", CHANNEL=0)
 (
     input   sys_reset,
 
@@ -25,7 +25,7 @@ module add_header # (DW = 512, FIFO_DEPTH = 256, CLOCK_TYPE="independent_clock")
     input dst_clk,
     
     // Synchronous with dst_clk
-    input             start_ts_timer_async,
+    input             capture_async,
 
     // Input stream, synchronous with src_clk
     input  [  DW-1:0] AXIS_IN_TDATA,
@@ -41,69 +41,21 @@ module add_header # (DW = 512, FIFO_DEPTH = 256, CLOCK_TYPE="independent_clock")
     input             AXIS_OUT_TREADY
 );
 
+// Include size definitions that descibe our configuration
+`include "geometry.vh"
 
 
 //=============================================================================
-// This block synchronizes the reset pin "sys_reset" into "src_reset"
+// This block synchronizes unsynchronized signals
 //=============================================================================
 wire src_reset;
-xpm_cdc_async_rst #
-(
-    .DEST_SYNC_FF(4), 
-    .INIT_SYNC_FF(0), 
-    .RST_ACTIVE_HIGH(1)
-)
-xpm_cdc_async_rst_src
-(
-    .src_arst (sys_reset),
-    .dest_clk (src_clk  ),  
-    .dest_arst(src_reset) 
-);
-//=============================================================================
+cdc_async_rst cdc0(sys_reset, src_clk, src_reset);
 
-
-//=============================================================================
-// This block synchronizes the reset pin "sys_reset" into "dst_reset"
-//=============================================================================
 wire dst_reset;
-xpm_cdc_async_rst #
-(
-    .DEST_SYNC_FF(4), 
-    .INIT_SYNC_FF(0), 
-    .RST_ACTIVE_HIGH(1)
-)
-xpm_cdc_async_rst_dst
-(
-    .src_arst (sys_reset),
-    .dest_clk (dst_clk  ),  
-    .dest_arst(dst_reset) 
-);
-//=============================================================================
+cdc_async_rst cdc1(sys_reset, dst_clk, dst_reset);
 
-
-
-
-
-
-//=============================================================================
-// This blocks synchronizes start_ts_timer_async into start_ts_timer_sync
-//=============================================================================
-wire start_ts_timer_sync;
-//-----------------------------------------------------------------------------
-xpm_cdc_single #
-(
-    .DEST_SYNC_FF  (4),   
-    .INIT_SYNC_FF  (0),   
-    .SIM_ASSERT_CHK(0), 
-    .SRC_INPUT_REG (0)   
-)
-start_ts_timer_synchronizer
-(
-    .src_clk (                    ),  
-    .src_in  (start_ts_timer_async),
-    .dest_clk(dst_clk             ), 
-    .dest_out(start_ts_timer_sync ) 
-);
+wire capture;
+cdc_single cdc2(capture_async, dst_clk, capture);
 //=============================================================================
 
 
@@ -124,7 +76,8 @@ wire[16-1:0] fplout_tdata;
 wire         fplout_tvalid;
 wire         fplout_tready;
 
-
+// We are either channel 0 or channel 1
+wire[7:0] channel = CHANNEL;
 
 //=============================================================================
 // This block counts the number of one bits in AXIS_IN_TKEEP, thereby 
@@ -169,7 +122,7 @@ end
 
 //=============================================================================
 // This block controls the timestamp_timer.   This counts clock cycles, but
-// only starts running on the rising edge of "start_ts_timer_sync"
+// only starts running on the rising edge of "capture"
 //=============================================================================
 reg[63:0] timestamp_timer;
 //-----------------------------------------------------------------------------
@@ -177,24 +130,50 @@ always @(posedge dst_clk) begin
     if (dst_reset)
         timestamp_timer <= 0;
     else if (timestamp_timer == 0)
-        timestamp_timer <= start_ts_timer_sync;
+        timestamp_timer <= capture;
     else
         timestamp_timer <= timestamp_timer + 1;
 end
 //=============================================================================
 
 
+//=============================================================================
+// This block asserts "hard_stop" if "capture" ever transitions from 1 to 0
+//=============================================================================
+reg hard_stop;
+reg hssm_state;
+//-----------------------------------------------------------------------------
+always @(posedge dst_clk) begin
+    if (dst_reset) begin
+        hard_stop       <= 0;
+        hssm_state      <= 0;
+    end else case (hssm_state)
+        0:  if ( capture) hssm_state <= 1;
+        1:  if (~capture) hard_stop  <= 1;
+    endcase
+end
+//=============================================================================
+
+
 // This is the header that we write out prior to the packet data
 // Synchronous with dst_clk
-wire[DW-1:0] header = {fplout_tdata, timestamp_timer};
+wire[DW-1:0] header = {fplout_tdata, timestamp_timer, channel, 56'h666c6f57202e44};
 
 //=============================================================================
 // This block waits for an entry to be available in the packet-length FIFO
 // then writes the header, followed by the contents of the packet
 //=============================================================================
-reg    fsm_state;
-assign AXIS_OUT_TDATA  = (fsm_state == 0) ? header        : fpdout_tdata;
-assign AXIS_OUT_TVALID = (fsm_state == 0) ? fplout_tvalid : fpdout_tvalid;
+reg[1:0] fsm_state;
+reg[7:0] hard_stop_beats;
+
+assign AXIS_OUT_TDATA  = (fsm_state == 0) ? header          : 
+                         (fsm_state == 1) ? fpdout_tdata    :
+                         (fsm_state == 2) ? {(DW/8){8'hFC}} : 0;
+
+assign AXIS_OUT_TVALID = (fsm_state == 0) ? fplout_tvalid  :
+                         (fsm_state == 1) ? fpdout_tvalid  :
+                         (fsm_state == 2) ? 1              : 0;
+
 assign AXIS_OUT_TLAST  = (fsm_state == 1) & fpdout_tlast;
 assign fplout_tready   = (fsm_state == 0) & AXIS_OUT_TREADY;
 assign fpdout_tready   = (fsm_state == 1) & AXIS_OUT_TREADY;
@@ -202,23 +181,40 @@ assign fpdout_tready   = (fsm_state == 1) & AXIS_OUT_TREADY;
 always @(posedge dst_clk) begin
     if (dst_reset) begin
         fsm_state <= 0;
+        hard_stop_beats <= CYCLES_PER_RAM_BLOCK-1;
 
     end else case(fsm_state)
         
         // Here, we're waiting for the header to be emitted
         0:  if (AXIS_OUT_TVALID & AXIS_OUT_TREADY)
                 fsm_state <= 1;
+            else if (hard_stop)
+                fsm_state <= 2;
 
         // Here, we're waiting for the last cycle of the packet to be emitted
-        1:  if (AXIS_OUT_TVALID & AXIS_OUT_TREADY & AXIS_OUT_TLAST)
-                fsm_state <= 0;
+        1:  if (AXIS_OUT_TVALID & AXIS_OUT_TREADY & AXIS_OUT_TLAST) begin
+                if (hard_stop)
+                    fsm_state <= 2;
+                else
+                    fsm_state <= 0;
+            end
 
+        // On a "hard-stop", we're going to push out an entire data-block's 
+        // worth of data-cycles to ensure that any partial blocks in the 
+        // downstream FIFO get written to RAM
+        2:  if (hard_stop_beats)
+                hard_stop_beats <= hard_stop_beats - 1;
+            else
+                fsm_state <= 3;
+
+        // When a hard-stop is complete, this state machine hangs
+        3:  fsm_state <= fsm_state;
     endcase
    
 end
 //=============================================================================
 
- 
+
 
 //=============================================================================
 // This FIFO holds incoming packet-data

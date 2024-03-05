@@ -74,7 +74,7 @@ module stream_to_ram # (parameter DW=512, CHANNEL = 0)
     //==========================================================================
 );
 
-// Include size definitions that descibe our hardware
+// Include size definitions that descibe our configuration
 `include "geometry.vh"
 
 // Determine the base address of our bank of RAM
@@ -84,18 +84,7 @@ localparam[63:0] BASE_ADDR = (CHANNEL==0) ? BANK0_BASE_ADDR : BANK1_BASE_ADDR;
 // This block synchronizes the reset pin "sys_reset" into "reset"
 //=============================================================================
 wire reset;
-xpm_cdc_async_rst #
-(
-    .DEST_SYNC_FF(4), 
-    .INIT_SYNC_FF(0), 
-    .RST_ACTIVE_HIGH(1)
-)
-xpm_cdc_async_rst_dst
-(
-    .src_arst (sys_reset),
-    .dest_clk (clk      ),  
-    .dest_arst(reset    ) 
-);
+cdc_async_rst cdc0(sys_reset, clk, reset);
 //=============================================================================
 
 // This keeps track of the total number of data-cycles that
@@ -170,8 +159,8 @@ reg[7:0] beat;
 
 // Constant values for the W-channel
 assign M_AXI_WSTRB   = -1;
-assign M_AXI_WLAST   = (beat == M_AXI_AWLEN);
-assign M_AXI_VALID   = fpdout_tvalid & (wsm_state == 1);
+assign M_AXI_WLAST   = (beat == M_AXI_AWLEN) & M_AXI_WVALID;
+assign M_AXI_WVALID  = fpdout_tvalid & (wsm_state == 1);
 assign fpdout_tready = M_AXI_WREADY  & (wsm_state == 1);
 
 // This determine when it's time to write a block of data to RAM
@@ -185,7 +174,8 @@ wire emit_w_block = (w_blocks_out < data_blocks_in)
 always @(posedge clk) begin
     
     if (reset) begin
-        wsm_state     <= 0;
+        wsm_state    <= 0;
+        w_blocks_out <= 0;
     end else case(wsm_state)
     
         // If it's time to emit a block on the write-channel...            

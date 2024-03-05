@@ -34,45 +34,14 @@ module packet_gate # (parameter DW = 512)
 );
 
 //=============================================================================
-// This blocks synchronizes enable_async into enable_sync
+// Synchronize unsynchronized signals
 //=============================================================================
 wire enable_sync;
-//-----------------------------------------------------------------------------
-xpm_cdc_single #
-(
-    .DEST_SYNC_FF  (4),   
-    .INIT_SYNC_FF  (0),   
-    .SIM_ASSERT_CHK(0), 
-    .SRC_INPUT_REG (0)   
-)
-xpm_cdc_single_0
-(
-    .src_clk (            ),  
-    .src_in  (enable_async),
-    .dest_clk(clk         ), 
-    .dest_out(enable_sync ) 
-);
-//=============================================================================
+cdc_single cdc0(enable_async, clk, enable_sync);
 
-
-//=============================================================================
-// This block synchronizes the reset pin "sys_reset" into "reset"
-//=============================================================================
 wire reset;
-xpm_cdc_async_rst #
-(
-    .DEST_SYNC_FF(4), 
-    .INIT_SYNC_FF(0), 
-    .RST_ACTIVE_HIGH(1)
-)
-xpm_cdc_async_rst_inst
-(
-    .src_arst (sys_reset),
-    .dest_clk (clk      ),  
-    .dest_arst(reset    ) 
-);
+cdc_async_rst cdc1(sys_reset, clk, reset);
 //=============================================================================
-
 
 
 //=============================================================================

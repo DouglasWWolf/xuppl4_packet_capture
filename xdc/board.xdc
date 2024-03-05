@@ -88,14 +88,13 @@ set_property PACKAGE_PIN N34 [get_ports qsfp0_clk_clk_n]
 ##########           LEDs           ##########
 ##############################################
 
-#set_property -dict {PACKAGE_PIN AR24  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[0]}]
-#set_property -dict {PACKAGE_PIN AT26  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[1]}]
-#set_property -dict {PACKAGE_PIN AR23  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[2]}]
-#set_property -dict {PACKAGE_PIN AR26  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[3]}]
+set_property -dict {PACKAGE_PIN AR24  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[0]}]
+set_property -dict {PACKAGE_PIN AT26  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[1]}]
+set_property -dict {PACKAGE_PIN AR23  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[2]}]
+set_property -dict {PACKAGE_PIN AR26  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_green_l[3]}]
 
-#set_property -dict {PACKAGE_PIN AP24  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[0]}]
-#set_property -dict {PACKAGE_PIN AT25  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[1]}]
-#set_property -dict {PACKAGE_PIN AP23  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[2]}]
-#set_property -dict {PACKAGE_PIN AR25  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[3]}]
+set_property -dict {PACKAGE_PIN AP24  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[0]}]
+set_property -dict {PACKAGE_PIN AT25  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[1]}]
+set_property -dict {PACKAGE_PIN AP23  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[2]}]
+set_property -dict {PACKAGE_PIN AR25  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports {led_orange_l[3]}]
 
-set_property -dict {PACKAGE_PIN AR24  IOSTANDARD LVCMOS18  PULLTYPE PULLUP} [get_ports ddr4_bank0_calib]

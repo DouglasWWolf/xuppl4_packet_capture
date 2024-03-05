@@ -7,51 +7,52 @@
    "No Loops_ExpandedHierarchyInLayout":"",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port pcie_refclk -pg 1 -lvl 0 -x 0 -y 660 -defaultsOSRD
-preplace port pcie_mgt -pg 1 -lvl 0 -x 0 -y 680 -defaultsOSRD -left
-preplace port ddr4_bank0_clk -pg 1 -lvl 5 -x 1480 -y 80 -defaultsOSRD -right
-preplace port m0_ddr4 -pg 1 -lvl 5 -x 1480 -y 60 -defaultsOSRD
-preplace port qsfp0_clk -pg 1 -lvl 5 -x 1480 -y 120 -defaultsOSRD -right
-preplace port gt_serial_port_0 -pg 1 -lvl 5 -x 1480 -y 100 -defaultsOSRD
-preplace port port-id_init_clk -pg 1 -lvl 5 -x 1480 -y 140 -defaultsOSRD -right
-preplace portBus ddr4_bank0_calib -pg 1 -lvl 5 -x 1480 -y 860 -defaultsOSRD
-preplace inst pcie_bridge -pg 1 -lvl 1 -x 150 -y 660 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 45 44} -defaultsOSRD -pinDir pcie_mgt_0 left -pinY pcie_mgt_0 20L -pinDir pcie_refclk left -pinY pcie_refclk 0L -pinDir M_AXI_B right -pinY M_AXI_B 0R -pinDir axi_aclk right -pinY axi_aclk 40R -pinDir axi_aresetn right -pinY axi_aresetn 20R
-preplace inst axi_interconnect -pg 1 -lvl 3 -x 800 -y 190 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 101 98 104 99 102 103 105 100} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 270L -pinDir M00_AXI right -pinY M00_AXI 0R -pinDir M01_AXI right -pinY M01_AXI 20R -pinDir ACLK left -pinY ACLK 350L -pinDir ARESETN left -pinY ARESETN 290L -pinDir S00_ACLK left -pinY S00_ACLK 370L -pinDir S00_ARESETN left -pinY S00_ARESETN 310L -pinDir M00_ACLK right -pinY M00_ACLK 40R -pinDir M00_ARESETN right -pinY M00_ARESETN 60R -pinDir M01_ACLK left -pinY M01_ACLK 390L -pinDir M01_ARESETN left -pinY M01_ARESETN 330L
-preplace inst led_inverter -pg 1 -lvl 4 -x 1250 -y 840 -defaultsOSRD -pinBusDir Op1 right -pinBusY Op1 0R -pinBusDir Res right -pinBusY Res 20R
-preplace inst system_ila_0 -pg 1 -lvl 4 -x 1250 -y 640 -swap {34 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 72 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 0 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 94 93} -defaultsOSRD -pinDir SLOT_0_AXI left -pinY SLOT_0_AXI 20L -pinDir SLOT_1_AXI left -pinY SLOT_1_AXI 40L -pinDir SLOT_2_AXI left -pinY SLOT_2_AXI 0L -pinDir clk left -pinY clk 60L -pinBusDir probe0 left -pinBusY probe0 100L -pinDir resetn left -pinY resetn 80L
-preplace inst channel_0 -pg 1 -lvl 4 -x 1250 -y 60 -swap {64 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 41 39 40 38 42 43 44 45 46 47 48 49 50 51 52 53 54 55 59 57 58 56 60 61 62 63 0 65 66 67 68 69 70 73 77 80 75 74 78 79 76 72 71} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 130L -pinDir ddr4_clk right -pinY ddr4_clk 20R -pinDir ddr4 right -pinY ddr4 0R -pinDir qsfp_clk right -pinY qsfp_clk 60R -pinDir gt_serial_port right -pinY gt_serial_port 40R -pinDir axis_tx left -pinY axis_tx 0L -pinDir ram_clk left -pinY ram_clk 170L -pinDir init_calib_complete right -pinY init_calib_complete 250R -pinDir sys_reset left -pinY sys_reset 270L -pinDir sys_clk left -pinY sys_clk 210L -pinBusDir ram_resetn_out left -pinBusY ram_resetn_out 190L -pinDir erase_ram left -pinY erase_ram 250L -pinDir erase_idle right -pinY erase_idle 270R -pinDir capture left -pinY capture 230L -pinDir init_clk right -pinY init_clk 80R -pinDir cmac_clock left -pinY cmac_clock 150L
-preplace inst aximm_window -pg 1 -lvl 2 -x 450 -y 760 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinBusDir window_addr right -pinBusY window_addr 20R
-preplace inst data_gen0 -pg 1 -lvl 3 -x 800 -y 60 -defaultsOSRD -pinDir AXIS_OUT right -pinY AXIS_OUT 0R -pinDir clk right -pinY clk 20R
-preplace inst sys_control -pg 1 -lvl 4 -x 1250 -y 420 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 24 23 20 21 22 26 25 27} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 100L -pinDir resetn left -pinY resetn 80L -pinDir sys_reset_out left -pinY sys_reset_out 20L -pinDir erase_ram left -pinY erase_ram 40L -pinDir packet_gate left -pinY packet_gate 60L -pinDir bank0_calib_complete right -pinY bank0_calib_complete 20R -pinDir bank0_erase_idle right -pinY bank0_erase_idle 0R -pinBusDir window_addr left -pinBusY window_addr 120L
-preplace netloc S00_ACLK_1 1 1 3 280 700 640 640 960
-preplace netloc S00_ARESETN_1 1 1 3 NJ 680 600 130 1000J
-preplace netloc channel_0_idle 1 4 1 1440 330n
-preplace netloc ddr4_0_c0_ddr4_ui_clk 1 3 1 N 230
-preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 3 1 N 250
-preplace netloc ddr4_0_c0_init_calib_complete 1 4 1 1460 310n
+preplace port pcie_refclk -pg 1 -lvl 0 -x 0 -y 210 -defaultsOSRD
+preplace port pcie_mgt -pg 1 -lvl 0 -x 0 -y 230 -defaultsOSRD -left
+preplace port ddr4_bank0_clk -pg 1 -lvl 5 -x 1540 -y 60 -defaultsOSRD -right
+preplace port m0_ddr4 -pg 1 -lvl 5 -x 1540 -y 80 -defaultsOSRD
+preplace port qsfp0_clk -pg 1 -lvl 5 -x 1540 -y 120 -defaultsOSRD -right
+preplace port gt_serial_port_0 -pg 1 -lvl 5 -x 1540 -y 100 -defaultsOSRD
+preplace port port-id_init_clk -pg 1 -lvl 5 -x 1540 -y 140 -defaultsOSRD -right
+preplace portBus led_orange_l -pg 1 -lvl 5 -x 1540 -y 560 -defaultsOSRD
+preplace portBus led_green_l -pg 1 -lvl 5 -x 1540 -y 580 -defaultsOSRD
+preplace inst pcie_bridge -pg 1 -lvl 1 -x 150 -y 210 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45} -defaultsOSRD -pinDir pcie_mgt_0 left -pinY pcie_mgt_0 20L -pinDir pcie_refclk left -pinY pcie_refclk 0L -pinDir M_AXI_B right -pinY M_AXI_B 0R -pinDir axi_aclk right -pinY axi_aclk 20R -pinDir axi_aresetn right -pinY axi_aresetn 40R
+preplace inst axi_interconnect -pg 1 -lvl 3 -x 760 -y 230 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 101 99 104 102 103 100 105} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 0L -pinDir M00_AXI right -pinY M00_AXI 0R -pinDir M01_AXI right -pinY M01_AXI 210R -pinDir ACLK left -pinY ACLK 20L -pinDir ARESETN left -pinY ARESETN 80L -pinDir S00_ACLK left -pinY S00_ACLK 40L -pinDir S00_ARESETN left -pinY S00_ARESETN 100L -pinDir M00_ACLK right -pinY M00_ACLK 230R -pinDir M00_ARESETN right -pinY M00_ARESETN 250R -pinDir M01_ACLK left -pinY M01_ACLK 60L -pinDir M01_ARESETN left -pinY M01_ARESETN 120L
+preplace inst channel_0 -pg 1 -lvl 4 -x 1270 -y 60 -swap {64 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 59 57 58 56 60 61 62 63 0 65 66 67 68 69 70 73 80 79 74 77 78 75 72 71 76} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 170L -pinDir ddr4_clk right -pinY ddr4_clk 0R -pinDir ddr4 right -pinY ddr4 20R -pinDir qsfp_clk right -pinY qsfp_clk 60R -pinDir gt_serial_port right -pinY gt_serial_port 40R -pinDir axis_tx left -pinY axis_tx 0L -pinDir ram_clk left -pinY ram_clk 210L -pinDir init_calib_complete right -pinY init_calib_complete 290R -pinDir sys_reset left -pinY sys_reset 290L -pinBusDir ram_resetn_out left -pinBusY ram_resetn_out 230L -pinDir erase_ram left -pinY erase_ram 270L -pinDir erase_idle right -pinY erase_idle 270R -pinDir capture left -pinY capture 250L -pinDir init_clk right -pinY init_clk 80R -pinDir cmac_clock left -pinY cmac_clock 190L -pinDir rx_aligned right -pinY rx_aligned 250R
+preplace inst data_gen0 -pg 1 -lvl 3 -x 760 -y 60 -defaultsOSRD -pinDir AXIS_OUT right -pinY AXIS_OUT 0R -pinDir clk right -pinY clk 20R
+preplace inst aximm_window -pg 1 -lvl 2 -x 430 -y 210 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 20R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinBusDir window_addr right -pinBusY window_addr 40R -pinDir aresetn left -pinY aresetn 40L
+preplace inst sys_control -pg 1 -lvl 4 -x 1270 -y 440 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 24 29 20 21 22 25 26 27 28 23 30 31 32 33} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 100L -pinDir resetn left -pinY resetn 120L -pinDir sys_reset_out left -pinY sys_reset_out 20L -pinDir erase_ram left -pinY erase_ram 40L -pinDir packet_gate left -pinY packet_gate 60L -pinDir bank0_calib_complete_async right -pinY bank0_calib_complete_async 0R -pinDir bank1_calib_complete_async right -pinY bank1_calib_complete_async 20R -pinDir bank0_erase_idle_async right -pinY bank0_erase_idle_async 40R -pinDir bank1_erase_idle_async right -pinY bank1_erase_idle_async 60R -pinBusDir window_addr left -pinBusY window_addr 80L -pinDir qsfp0_status_async right -pinY qsfp0_status_async 80R -pinDir qsfp1_status_async right -pinY qsfp1_status_async 100R -pinBusDir led_orang_l right -pinBusY led_orang_l 120R -pinBusDir led_green_l right -pinBusY led_green_l 140R
+preplace netloc S00_ACLK_1 1 1 3 300 300 580 150 940
+preplace netloc S00_ARESETN_1 1 1 3 280 320 600 170 920
+preplace netloc channel_0_idle 1 4 1 1500 330n
+preplace netloc channel_0_rx_aligned 1 4 1 1520 310n
+preplace netloc ddr4_0_c0_ddr4_ui_clk 1 3 1 960 270n
+preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 3 1 1000 290n
+preplace netloc ddr4_0_c0_init_calib_complete 1 4 1 1480 350n
 preplace netloc ethernet_cmac_clock0 1 3 1 1060 80n
-preplace netloc led_inverter_Res 1 4 1 NJ 860
-preplace netloc sys_control_0_erase_ram 1 3 1 1040 310n
-preplace netloc sys_control_0_sys_reset_out 1 3 1 1060 330n
-preplace netloc sys_control_packet_gate 1 3 1 1020 290n
-preplace netloc sys_control_window_addr 1 2 2 NJ 780 1040
 preplace netloc init_clk_1 1 4 1 NJ 140
-preplace netloc AXIMM_IN 1 1 3 300 660 NJ 660 N
-preplace netloc AXIMM_OUT 1 2 2 620 680 N
-preplace netloc C0_SYS_CLK_0_1 1 4 1 NJ 80
-preplace netloc CLK_IN_D_0_1 1 0 1 NJ 660
-preplace netloc SYS_CONTROl 1 3 1 980 210n
-preplace netloc axi_interconnect_0_M00_AXI 1 3 1 N 190
-preplace netloc ddr4_0_C0_DDR4 1 4 1 NJ 60
-preplace netloc pcie_bridge_pcie_mgt 1 0 1 NJ 680
-preplace netloc qsfp0_clk_1 1 4 1 NJ 120
+preplace netloc sys_control_0_erase_ram 1 3 1 1040 330n
+preplace netloc sys_control_0_sys_reset_out 1 3 1 1060 350n
+preplace netloc sys_control_led_green_l 1 4 1 NJ 580
+preplace netloc sys_control_led_orang_l 1 4 1 NJ 560
+preplace netloc sys_control_packet_gate 1 3 1 1020 310n
+preplace netloc sys_control_window_addr 1 2 2 560J 130 980
+preplace netloc AXIMM_IN 1 1 1 N 210
+preplace netloc AXIMM_OUT 1 2 1 N 230
+preplace netloc C0_SYS_CLK_0_1 1 4 1 NJ 60
+preplace netloc CLK_IN_D_0_1 1 0 1 NJ 210
+preplace netloc SYS_CONTROl 1 3 1 N 440
+preplace netloc axi_interconnect_0_M00_AXI 1 3 1 N 230
 preplace netloc channel_0_gt_serial_port_0 1 4 1 NJ 100
 preplace netloc data_gen0_AXIS_OUT 1 3 1 N 60
-levelinfo -pg 1 0 150 450 800 1250 1480
-pagesize -pg 1 -db -bbox -sgen -130 0 1690 920
+preplace netloc ddr4_0_C0_DDR4 1 4 1 NJ 80
+preplace netloc pcie_bridge_pcie_mgt 1 0 1 NJ 230
+preplace netloc qsfp0_clk_1 1 4 1 NJ 120
+levelinfo -pg 1 0 150 430 760 1270 1540
+pagesize -pg 1 -db -bbox -sgen -130 0 1720 640
 ",
-   "No Loops_ScaleFactor":"0.695652",
-   "No Loops_TopLeft":"-266,0",
+   "No Loops_ScaleFactor":"0.956522",
+   "No Loops_TopLeft":"-126,-120",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace inst pcie_bridge -pg 1 -lvl 2 -x 480 -y -220 -defaultsOSRD

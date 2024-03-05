@@ -18,16 +18,15 @@ module fill_ram #
     parameter       CHANNEL    = 0
 )
 (
-    (* X_INTERFACE_INFO      = "xilinx.com:signal:clock:1.0 ram_clk CLK"            *)
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF M_AXI, ASSOCIATED_RESET ram_reset" *)
-    input             ram_clk,
-    input             ram_reset,
+    (* X_INTERFACE_INFO      = "xilinx.com:signal:clock:1.0 clk CLK"            *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF M_AXI, ASSOCIATED_RESET reset" *)
+    input             clk,
+    input             reset,
     output  reg[63:0] elapsed,
     output  reg       idle,
 
-    // "sys_sync_start" is synchronous to sys_clk
-    input             sys_clk,
-    input             sys_sync_start,
+    // When this is asserted, we'll start erasing RAM
+    input             start_async,
 
     //=================   This is the AXI4 output interface   ==================
 
@@ -84,30 +83,10 @@ module fill_ram #
 // Determine the base address of our bank of RAM
 localparam[63:0] BASE_ADDR = (CHANNEL==0) ? BANK0_BASE_ADDR : BANK1_BASE_ADDR;
 
-//=============================================================================
-// This block synchronizes "sys_sync_start" into "ram_sync_start"
-//=============================================================================
-wire ram_sync_start;
-//-----------------------------------------------------------------------------
-xpm_cdc_pulse #
-(
-    .DEST_SYNC_FF  (4),
-    .INIT_SYNC_FF  (0),
-    .REG_OUTPUT    (0),  
-    .RST_USED      (0),    
-    .SIM_ASSERT_CHK(0)
-)
-xpm_start_sync
-(
-    .src_clk   (sys_clk       ),       
-    .src_pulse (sys_sync_start), 
-    .src_rst   (              ),
-    .dest_clk  (ram_clk       ),   
-    .dest_pulse(ram_sync_start),
-    .dest_rst  (              )
-);
-//=============================================================================
 
+// Synchronize "start_async" into "start"
+wire start;
+cdc_single cdc0(start_async, clk, start);
 
 
 //=============================================================================
@@ -117,8 +96,8 @@ reg[63:0] write_ack_count;
 //-----------------------------------------------------------------------------
 assign M_AXI_BREADY = 1;
 
-always @(posedge ram_clk) begin
-    if (ram_reset | ram_sync_start) 
+always @(posedge clk) begin
+    if (reset | start) 
         write_ack_count <= 0;
     else if (M_AXI_BREADY & M_AXI_BVALID)
         write_ack_count <= write_ack_count + 1;
@@ -137,13 +116,13 @@ assign M_AXI_AWBURST = 1;
 reg       awsm_state;
 reg[31:0] aw_block_count;
 //-----------------------------------------------------------------------------
-always @(posedge ram_clk) begin
-    if (ram_reset) begin
+always @(posedge clk) begin
+    if (reset) begin
         awsm_state    <= 0;
         M_AXI_AWVALID <= 0;
     end else case (awsm_state)
 
-        0:  if (ram_sync_start) begin
+        0:  if (start) begin
                 aw_block_count <= 1;
                 M_AXI_AWADDR   <= BASE_ADDR;
                 M_AXI_AWVALID  <= 1;
@@ -177,20 +156,20 @@ assign M_AXI_WDATA = {(DW/8){FILL_VALUE}};
 assign M_AXI_WSTRB = -1;
 assign M_AXI_WLAST = (cycle_count == CYCLES_PER_RAM_BLOCK);
 
-always @(posedge ram_clk) begin
+always @(posedge clk) begin
 
     // Count the number of clock cycles it takes to completely
     // fill our bank of RAM with a constant    
     if (~idle) elapsed <= elapsed + 1;
     
-    if (ram_reset) begin
+    if (reset) begin
         wsm_state    <= 0;
         M_AXI_WVALID <= 0;
         idle         <= 1;
     end else case (wsm_state)
 
         // Here we wait for someone to say "go!"
-        0:  if (ram_sync_start) begin
+        0:  if (start) begin
                 idle          <= 0;
                 w_block_count <= 1;
                 M_AXI_WVALID  <= 1;
