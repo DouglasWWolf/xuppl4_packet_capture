@@ -35,7 +35,6 @@
         "axi_crossbar": "",
         "ddr4": "",
         "ddr4_reset_inverter": "",
-        "system_ila": "",
         "ethernet": {
           "cmac_usplus": "",
           "cmac_control": ""
@@ -59,7 +58,6 @@
         "axi_crossbar": "",
         "ddr4": "",
         "ddr4_reset_inverter": "",
-        "system_ila": "",
         "ethernet": {
           "cmac_usplus": "",
           "cmac_control": ""
@@ -1694,41 +1692,6 @@
               }
             }
           },
-          "system_ila": {
-            "vlnv": "xilinx.com:ip:system_ila:1.1",
-            "xci_name": "top_level_system_ila_1_0",
-            "xci_path": "ip/top_level_system_ila_1_0/top_level_system_ila_1_0.xci",
-            "inst_hier_path": "channel_0/system_ila",
-            "parameters": {
-              "C_DATA_DEPTH": {
-                "value": "2048"
-              },
-              "C_NUM_MONITOR_SLOTS": {
-                "value": "2"
-              },
-              "C_SLOT": {
-                "value": "1"
-              },
-              "C_SLOT_0_INTF_TYPE": {
-                "value": "xilinx.com:interface:axis_rtl:1.0"
-              },
-              "C_SLOT_1_INTF_TYPE": {
-                "value": "xilinx.com:interface:aximm_rtl:1.0"
-              }
-            },
-            "interface_ports": {
-              "SLOT_0_AXIS": {
-                "mode": "Monitor",
-                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-                "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-              },
-              "SLOT_1_AXI": {
-                "mode": "Monitor",
-                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-              }
-            }
-          },
           "ethernet": {
             "interface_ports": {
               "gt_ref_clk": {
@@ -3171,8 +3134,7 @@
           "add_header_AXIS_OUT": {
             "interface_ports": [
               "stream_to_ram/AXIS_IN",
-              "add_header/AXIS_OUT",
-              "system_ila/SLOT_0_AXIS"
+              "add_header/AXIS_OUT"
             ]
           },
           "axi_crossbar_M00_AXI": {
@@ -3196,8 +3158,7 @@
           "axi_register_slice_0_M_AXI": {
             "interface_ports": [
               "axi_crossbar/S02_AXI",
-              "to_xbar_slice/M_AXI",
-              "system_ila/SLOT_1_AXI"
+              "to_xbar_slice/M_AXI"
             ]
           },
           "ddr4_0_C0_DDR4": {
@@ -3245,7 +3206,6 @@
               "ddr4/c0_ddr4_ui_clk",
               "ram_clk",
               "axi_crossbar/aclk",
-              "system_ila/clk",
               "to_xbar_slice/aclk",
               "add_header/dst_clk",
               "fill_ram/clk",
@@ -3926,6 +3886,14 @@
                   "NUM_WRITE_THREADS": {
                     "value": "1",
                     "value_src": "user_prop"
+                  },
+                  "RUSER_BITS_PER_BYTE": {
+                    "value": "0",
+                    "value_src": "ip_prop"
+                  },
+                  "WUSER_BITS_PER_BYTE": {
+                    "value": "0",
+                    "value_src": "ip_prop"
                   }
                 },
                 "port_maps": {
@@ -4159,22 +4127,22 @@
           }
         },
         "interface_nets": {
-          "AXIMM_IN": {
+          "S_AXI_1": {
             "interface_ports": [
               "S_AXI",
-              "aximm_window/S_AXI"
+              "axi_register_slice/S_AXI"
             ]
           },
-          "axi_register_slice_0_M_AXI": {
+          "axi_register_slice_M_AXI": {
             "interface_ports": [
-              "M_AXI",
-              "axi_register_slice/M_AXI"
+              "axi_register_slice/M_AXI",
+              "aximm_window/S_AXI"
             ]
           },
           "aximm_window_M_AXI": {
             "interface_ports": [
-              "aximm_window/M_AXI",
-              "axi_register_slice/S_AXI"
+              "M_AXI",
+              "aximm_window/M_AXI"
             ]
           }
         },
@@ -4408,41 +4376,6 @@
               },
               "C_SIZE": {
                 "value": "1"
-              }
-            }
-          },
-          "system_ila": {
-            "vlnv": "xilinx.com:ip:system_ila:1.1",
-            "xci_name": "top_level_system_ila_2_0",
-            "xci_path": "ip/top_level_system_ila_2_0/top_level_system_ila_2_0.xci",
-            "inst_hier_path": "channel_1/system_ila",
-            "parameters": {
-              "C_DATA_DEPTH": {
-                "value": "2048"
-              },
-              "C_NUM_MONITOR_SLOTS": {
-                "value": "2"
-              },
-              "C_SLOT": {
-                "value": "1"
-              },
-              "C_SLOT_0_INTF_TYPE": {
-                "value": "xilinx.com:interface:axis_rtl:1.0"
-              },
-              "C_SLOT_1_INTF_TYPE": {
-                "value": "xilinx.com:interface:aximm_rtl:1.0"
-              }
-            },
-            "interface_ports": {
-              "SLOT_0_AXIS": {
-                "mode": "Monitor",
-                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-                "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-              },
-              "SLOT_1_AXI": {
-                "mode": "Monitor",
-                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
               }
             }
           },
@@ -5903,8 +5836,7 @@
           "add_header_AXIS_OUT": {
             "interface_ports": [
               "stream_to_ram/AXIS_IN",
-              "add_header/AXIS_OUT",
-              "system_ila/SLOT_0_AXIS"
+              "add_header/AXIS_OUT"
             ]
           },
           "axi_crossbar_M00_AXI": {
@@ -5922,8 +5854,7 @@
           "axi_register_slice_0_M_AXI": {
             "interface_ports": [
               "axi_crossbar/S02_AXI",
-              "to_xbar_slice/M_AXI",
-              "system_ila/SLOT_1_AXI"
+              "to_xbar_slice/M_AXI"
             ]
           },
           "ddr4_0_C0_DDR4": {
@@ -5977,7 +5908,6 @@
               "ddr4/c0_ddr4_ui_clk",
               "ram_clk",
               "axi_crossbar/aclk",
-              "system_ila/clk",
               "to_xbar_slice/aclk",
               "add_header/dst_clk",
               "fill_ram/clk",
