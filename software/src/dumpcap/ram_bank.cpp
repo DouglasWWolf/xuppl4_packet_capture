@@ -6,18 +6,18 @@
 
 
 const uint32_t REG_BASE        = 0x1000;
-const uint32_t REG_MODULE_REV  = (REG_BASE + 0 * 4);
-const uint32_t REG_CAPTURE     = (REG_BASE + 1 * 4);
-const uint32_t REG_WINDOWH     = (REG_BASE + 2 * 4);
-const uint32_t REG_WINDOWL     = (REG_BASE + 3 * 4);
-const uint32_t REG_STATUS      = (REG_BASE + 4 * 4);
-const uint32_t REG_BANK_SIZEH  = (REG_BASE + 5 * 4);
-const uint32_t REG_BANK_SIZEL  = (REG_BASE + 6 * 4);
-const uint32_t REG_BANK0_ADDRH = (REG_BASE + 7 * 4);
-const uint32_t REG_BANK0_ADDRL = (REG_BASE + 8 * 4);
-const uint32_t REG_BANK1_ADDRH = (REG_BASE + 9 * 4);
-const uint32_t REG_BANK1_ADDRL = (REG_BASE + 0 * 4);
-
+const uint32_t REG_MODULE_REV  = (REG_BASE +  0 * 4);
+const uint32_t REG_CAPTURE     = (REG_BASE +  1 * 4);
+const uint32_t REG_WINDOWH     = (REG_BASE +  2 * 4);
+const uint32_t REG_WINDOWL     = (REG_BASE +  3 * 4);
+const uint32_t REG_STATUS      = (REG_BASE +  4 * 4);
+const uint32_t REG_BANK_SIZEH  = (REG_BASE +  5 * 4);
+const uint32_t REG_BANK_SIZEL  = (REG_BASE +  6 * 4);
+const uint32_t REG_BANK0_ADDRH = (REG_BASE +  7 * 4);
+const uint32_t REG_BANK0_ADDRL = (REG_BASE +  8 * 4);
+const uint32_t REG_BANK1_ADDRH = (REG_BASE +  9 * 4);
+const uint32_t REG_BANK1_ADDRL = (REG_BASE + 10 * 4);
+const uint32_t REG_TS_FREQ     = (REG_BASE + 11 * 4);
 
 const uint32_t WINDOW_SIZE = 1024 * 1024;
 
@@ -96,6 +96,9 @@ void CRamBank::init(unsigned char* BAR0, unsigned char* BAR1)
     // Save the base addresses of the two PCIe device resources
     m_BAR0 = BAR0;
     m_BAR1 = BAR1;
+
+    // Fetch the frequency of the timestamp clock
+    m_ts_frequency = read_reg32(REG_TS_FREQ);
 
     init_channel(0);
 }
@@ -188,7 +191,7 @@ bool CRamBank::get_next_packet(pcap_packet_t* packet_ptr)
     uint64_t timestamp_clocks = *(uint64_t*)(buffer + 8);
 
     // Convert the timestamp to nanoseconds
-    uint64_t timestamp_ns = timestamp_clocks * 1000000000 / 333250000;
+    uint64_t timestamp_ns = timestamp_clocks * 1000000000 / m_ts_frequency;
        
     // Fetch the packet length (in bytes) from the block header
     uint32_t length_in_bytes = *(uint16_t*)(buffer + 16);

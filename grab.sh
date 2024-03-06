@@ -1,5 +1,5 @@
 dest=bitstream
-base=project
+base=xuppl4_packet_capture
 
 mkdir $dest 2>/dev/null
 

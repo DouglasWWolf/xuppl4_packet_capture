@@ -81,6 +81,7 @@ module sys_control
 // be bumped
 localparam MODULE_VERSION = 1;
 
+
 //=========================  AXI Register Map  =============================
 localparam REG_MODULE_REV   =  0;
 localparam REG_CAPTURE      =  1;
@@ -93,6 +94,7 @@ localparam REG_BANK0_ADDRH  =  7;
 localparam REG_BANK0_ADDRL  =  8;
 localparam REG_BANK1_ADDRH  =  9;
 localparam REG_BANK1_ADDRL  = 10;
+localparam REG_TS_FREQ      = 11;
 //==========================================================================
 
 
@@ -277,7 +279,7 @@ always @(posedge clk) begin
             REG_BANK0_ADDRL:    ashi_rdata <= BANK0_BASE_ADDR[31:00];
             REG_BANK1_ADDRH:    ashi_rdata <= BANK1_BASE_ADDR[63:32];
             REG_BANK1_ADDRL:    ashi_rdata <= BANK1_BASE_ADDR[31:00];
-
+            REG_TS_FREQ:        ashi_rdata <= RAM_CLOCK_FREQ;
 
             // Because we are a 32-bit slave on a 512-bit bus, every
             // read operation will be 16-consecutive read operations.

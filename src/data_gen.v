@@ -1,4 +1,4 @@
-module data_gen # (parameter DW=512)
+module data_gen # (parameter DW=512, CHANNEL=0)
 (
 
     input   clk, resetn,
@@ -20,7 +20,7 @@ assign AXIS_OUT_TKEEP = -1;
 
 always @(posedge clk) begin
     if (resetn == 0) begin
-        data            <= 0;
+        data            <= (CHANNEL << 8) | CHANNEL;
         cycle_counter   <= 0;
         AXIS_OUT_TVALID <= 0;
     end else begin

@@ -57,6 +57,9 @@ protected:
     // fetch our next packet from
     uint64_t m_next_packet_offset;
 
+    // The frequency of the clock that generates the raw timestamps
+    uint64_t m_ts_frequency;
+
     // Userspace pointers to the PCIe resources of our device
     unsigned char *m_BAR0, *m_BAR1;
 };

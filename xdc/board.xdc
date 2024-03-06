@@ -61,8 +61,8 @@ set_property PACKAGE_PIN N34 [get_ports qsfp0_clk_clk_n]
 # Use CMAC X0Y0, transceivers X0Y4 thru X0Y7
 #
 # MGTREFCLK0 for Quad 125  
-#set_property PACKAGE_PIN AE33 [get_ports qsfp1_clk_clk_p]
-#set_property PACKAGE_PIN Ae34 [get_ports qsfp1_clk_clk_n]
+set_property PACKAGE_PIN AE33 [get_ports qsfp1_clk_clk_p]
+set_property PACKAGE_PIN Ae34 [get_ports qsfp1_clk_clk_n]
 
 
 
