@@ -74,17 +74,25 @@ module sys_control
     //==========================================================================
 );  
 
+// Include the constants that define our RAM configuration
+`include "geometry.vh"
 
 // Any time the register map of this module changes, this number should
 // be bumped
 localparam MODULE_VERSION = 1;
 
 //=========================  AXI Register Map  =============================
-localparam REG_MODULE_REV   = 0;
-localparam REG_CAPTURE      = 1;
-localparam REG_WINDOW_ADDRH = 2;
-localparam REG_WINDOW_ADDRL = 3;
-localparam REG_STATUS       = 4;
+localparam REG_MODULE_REV   =  0;
+localparam REG_CAPTURE      =  1;
+localparam REG_WINDOW_ADDRH =  2;
+localparam REG_WINDOW_ADDRL =  3;
+localparam REG_STATUS       =  4;
+localparam REG_BANK_SIZEH   =  5;
+localparam REG_BANK_SIZEL   =  6;
+localparam REG_BANK0_ADDRH  =  7;
+localparam REG_BANK0_ADDRL  =  8;
+localparam REG_BANK1_ADDRH  =  9;
+localparam REG_BANK1_ADDRL  = 10;
 //==========================================================================
 
 
@@ -263,6 +271,13 @@ always @(posedge clk) begin
             REG_WINDOW_ADDRH:   ashi_rdata <= window_addr[63:32];
             REG_WINDOW_ADDRL:   ashi_rdata <= window_addr[31:00];
             REG_STATUS:         ashi_rdata <= status_word;
+            REG_BANK_SIZEH:     ashi_rdata <= RAM_BANK_SIZE[63:32];
+            REG_BANK_SIZEL:     ashi_rdata <= RAM_BANK_SIZE[31:00];
+            REG_BANK0_ADDRH:    ashi_rdata <= BANK0_BASE_ADDR[63:32];
+            REG_BANK0_ADDRL:    ashi_rdata <= BANK0_BASE_ADDR[31:00];
+            REG_BANK1_ADDRH:    ashi_rdata <= BANK1_BASE_ADDR[63:32];
+            REG_BANK1_ADDRL:    ashi_rdata <= BANK1_BASE_ADDR[31:00];
+
 
             // Because we are a 32-bit slave on a 512-bit bus, every
             // read operation will be 16-consecutive read operations.
