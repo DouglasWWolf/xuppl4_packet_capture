@@ -248,8 +248,7 @@ struct pcap_header_t
     uint32_t    reserved1;
     uint32_t    reserved2;
     uint32_t    snaplen;
-    uint16_t    fcs;
-    uint16_t    link_type;
+    uint32_t    link_type;
 } header;
 #pragma pack_pop;
 //=============================================================================
@@ -276,8 +275,7 @@ void CRamBank::dump_pcap(uint32_t channel, uint32_t packets)
     header.reserved1     = 0;
     header.reserved2     = 0;
     header.snaplen       = 65535;
-    header.fcs           = 0;
-    header.link_type     = 0;
+    header.link_type     = 1;
 
     // Create the output file and complain if we can't
     FILE* ofile = fopen(filename, "w");
