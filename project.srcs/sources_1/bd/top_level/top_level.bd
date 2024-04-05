@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x9041D24968ABB407",
+      "boundary_crc": "0x9041D2498E42CA60",
       "device": "xcvu3p-ffvc1517-2-e",
       "gen_directory": "../../../../project.gen/sources_1/bd/top_level",
       "name": "top_level",
@@ -115,60 +115,60 @@
         "vlnv": "xilinx.com:interface:ddr4_rtl:1.0",
         "parameters": {
           "AXI_ARBITRATION_SCHEME": {
-            "value": "RD_PRI_REG",
-            "value_src": "user_prop"
+            "value": "TDM",
+            "value_src": "default_prop"
           },
           "BURST_LENGTH": {
             "value": "8",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "CAN_DEBUG": {
             "value": "false",
             "value_src": "default"
           },
           "CAS_LATENCY": {
-            "value": "18",
-            "value_src": "user_prop"
+            "value": "11",
+            "value_src": "default_prop"
           },
           "CAS_WRITE_LATENCY": {
-            "value": "14",
-            "value_src": "user_prop"
+            "value": "11",
+            "value_src": "default_prop"
           },
           "CS_ENABLED": {
             "value": "true",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "CUSTOM_PARTS": {
             "value": "no_file_loaded",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "DATA_MASK_ENABLED": {
-            "value": "DM_NO_DBI",
-            "value_src": "user_prop"
+            "value": "true",
+            "value_src": "default_prop"
           },
           "DATA_WIDTH": {
-            "value": "64",
-            "value_src": "user_prop"
+            "value": "8",
+            "value_src": "default_prop"
           },
           "MEMORY_PART": {
             "value": "MT40A512M8RH-075E",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "MEMORY_TYPE": {
-            "value": "Components",
-            "value_src": "user_prop"
+            "value": "COMPONENTS",
+            "value_src": "default_prop"
           },
           "MEM_ADDR_MAP": {
             "value": "ROW_COLUMN_BANK",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "SLOT": {
             "value": "Single",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "TIMEPERIOD_PS": {
-            "value": "750",
-            "value_src": "user_prop"
+            "value": "1250",
+            "value_src": "default_prop"
           }
         }
       },
@@ -203,60 +203,60 @@
         "vlnv": "xilinx.com:interface:ddr4_rtl:1.0",
         "parameters": {
           "AXI_ARBITRATION_SCHEME": {
-            "value": "RD_PRI_REG",
-            "value_src": "user_prop"
+            "value": "TDM",
+            "value_src": "default_prop"
           },
           "BURST_LENGTH": {
             "value": "8",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "CAN_DEBUG": {
             "value": "false",
             "value_src": "default"
           },
           "CAS_LATENCY": {
-            "value": "18",
-            "value_src": "user_prop"
+            "value": "11",
+            "value_src": "default_prop"
           },
           "CAS_WRITE_LATENCY": {
-            "value": "14",
-            "value_src": "user_prop"
+            "value": "11",
+            "value_src": "default_prop"
           },
           "CS_ENABLED": {
             "value": "true",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "CUSTOM_PARTS": {
             "value": "no_file_loaded",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "DATA_MASK_ENABLED": {
-            "value": "DM_NO_DBI",
-            "value_src": "user_prop"
+            "value": "true",
+            "value_src": "default_prop"
           },
           "DATA_WIDTH": {
-            "value": "64",
-            "value_src": "user_prop"
+            "value": "8",
+            "value_src": "default_prop"
           },
           "MEMORY_PART": {
             "value": "MT40A512M8RH-075E",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "MEMORY_TYPE": {
-            "value": "Components",
-            "value_src": "user_prop"
+            "value": "COMPONENTS",
+            "value_src": "default_prop"
           },
           "MEM_ADDR_MAP": {
             "value": "ROW_COLUMN_BANK",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "SLOT": {
             "value": "Single",
-            "value_src": "user_prop"
+            "value_src": "default"
           },
           "TIMEPERIOD_PS": {
-            "value": "750",
-            "value_src": "user_prop"
+            "value": "1250",
+            "value_src": "default_prop"
           }
         }
       },
@@ -2220,7 +2220,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -2286,7 +2286,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -2329,7 +2329,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "ID_WIDTH": {
@@ -2625,7 +2625,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -2718,7 +2718,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -2761,7 +2761,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "ID_WIDTH": {
@@ -3053,7 +3053,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -4889,7 +4889,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -4955,7 +4955,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -5003,7 +5003,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "ID_WIDTH": {
@@ -5299,7 +5299,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -5397,7 +5397,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
@@ -5440,7 +5440,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "ID_WIDTH": {
@@ -5732,7 +5732,7 @@
                     "value_src": "constant"
                   },
                   "FREQ_HZ": {
-                    "value": "333250000",
+                    "value": "3.3325e+08",
                     "value_src": "user_prop"
                   },
                   "PHASE": {
