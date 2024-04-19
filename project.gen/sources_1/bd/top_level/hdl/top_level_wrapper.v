@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.1 (lin64) Build 3247384 Thu Jun 10 19:36:07 MDT 2021
-//Date        : Sun Apr  7 17:14:13 2024
+//Date        : Thu Apr 18 23:24:21 2024
 //Host        : simtool-5 running 64-bit Ubuntu 20.04.6 LTS
 //Command     : generate_target top_level_wrapper.bd
 //Design      : top_level_wrapper
@@ -62,7 +62,9 @@ module top_level_wrapper
     qsfp0_clk_clk_n,
     qsfp0_clk_clk_p,
     qsfp1_clk_clk_n,
-    qsfp1_clk_clk_p);
+    qsfp1_clk_clk_p,
+    qsfp_lp,
+    qsfp_rst_l);
   input ddr4_bank0_clk_clk_n;
   input ddr4_bank0_clk_clk_p;
   input ddr4_bank1_clk_clk_n;
@@ -116,6 +118,8 @@ module top_level_wrapper
   input qsfp0_clk_clk_p;
   input qsfp1_clk_clk_n;
   input qsfp1_clk_clk_p;
+  output [1:0]qsfp_lp;
+  output [1:0]qsfp_rst_l;
 
   wire ddr4_bank0_clk_clk_n;
   wire ddr4_bank0_clk_clk_p;
@@ -170,6 +174,8 @@ module top_level_wrapper
   wire qsfp0_clk_clk_p;
   wire qsfp1_clk_clk_n;
   wire qsfp1_clk_clk_p;
+  wire [1:0]qsfp_lp;
+  wire [1:0]qsfp_rst_l;
 
   top_level top_level_i
        (.ddr4_bank0_clk_clk_n(ddr4_bank0_clk_clk_n),
@@ -224,5 +230,7 @@ module top_level_wrapper
         .qsfp0_clk_clk_n(qsfp0_clk_clk_n),
         .qsfp0_clk_clk_p(qsfp0_clk_clk_p),
         .qsfp1_clk_clk_n(qsfp1_clk_clk_n),
-        .qsfp1_clk_clk_p(qsfp1_clk_clk_p));
+        .qsfp1_clk_clk_p(qsfp1_clk_clk_p),
+        .qsfp_lp(qsfp_lp),
+        .qsfp_rst_l(qsfp_rst_l));
 endmodule
