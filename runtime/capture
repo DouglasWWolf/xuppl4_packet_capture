@@ -1,0 +1,17 @@
+# 
+# Usage: "capture [start | stop]".
+#
+# If no parameter is given, "capture start" is assumed
+#
+
+if [ $(pcireg -dec 20) -ne 121475 ]; then
+    echo "The packet_capture  bitstream is not loaded into the FPGA!"
+    exit
+fi
+
+if [ "$1" == "stop" ]; then
+    pcireg 0x1004 0
+else
+    pcireg 0x1004 1
+fi
+

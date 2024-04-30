@@ -1,0 +1,36 @@
+#==============================================================================
+# This reads a PCI register and displays its value in decimal
+#==============================================================================
+read_reg()
+{
+    # Capture the value of the AXI register
+    text=$(pcireg $1)
+
+    # Extract just the first word of that text
+    text=($text)
+
+    # Convert the text into a number
+    value=$((text))
+
+    # Hand the value to the caller
+    echo $value
+}
+#==============================================================================
+
+
+
+
+#==============================================================================
+# Displays the version of the RTL bitstream
+#==============================================================================
+get_rtl_version()
+{
+    local major=$(read_reg 0)
+    local minor=$(read_reg 4)
+    local revis=$(read_reg 8)
+    echo ${major}.${minor}.${revis}
+}
+#==============================================================================
+
+get_rtl_version
+

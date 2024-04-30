@@ -1,0 +1,33 @@
+#
+# Usage: dump [packet_count]
+#
+# If [packet_count] is omitted, 5000 packets will be dumped
+#
+
+
+#
+# Make sure that we have the correct bistream loaded!
+#
+if [ $(pcireg -dec 20) -ne 121475 ]; then
+    echo "The packet_capture  bitstream is not loaded into the FPGA!"
+    exit
+fi
+
+
+#
+# Force unflushed packets to be flushed to RAM 
+#
+pcireg 0x1004 0
+sleep .1
+
+#
+# Determine how many packets to dump out
+#
+count=5000
+test "$1" !=  "" && count=$1 
+
+#
+# Dump packets to disk from both channels
+#
+getpackets -ch 0 $count
+getpackets -ch 1 $count
