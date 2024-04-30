@@ -1,4 +1,3 @@
-
 //================================================================================================
 //    Date      Vers   Who  Changes
 // -----------------------------------------------------------------------------------------------
@@ -8,6 +7,8 @@ localparam VERSION_MAJOR = 1;
 localparam VERSION_MINOR = 0;
 localparam VERSION_BUILD = 0;
 localparam VERSION_RCAND = 0;
+localparam RTL_TYPE      = 121475;
+localparam RTL_SUBTYPE   = 0;
 
 localparam VERSION_DAY   = 7;
 localparam VERSION_MONTH = 4;

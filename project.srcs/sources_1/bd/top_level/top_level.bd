@@ -76,8 +76,8 @@
         "data_gen": ""
       },
       "sys_control": "",
-      "axi_revision": "",
-      "qsfp_pins": ""
+      "qsfp_pins": "",
+      "axi_revision": ""
     },
     "interface_ports": {
       "pcie_refclk": {
@@ -6950,6 +6950,29 @@
           }
         }
       },
+      "qsfp_pins": {
+        "vlnv": "xilinx.com:module_ref:qsfp_pins:1.0",
+        "xci_name": "top_level_qsfp_pins_0_0",
+        "xci_path": "ip/top_level_qsfp_pins_0_0/top_level_qsfp_pins_0_0.xci",
+        "inst_hier_path": "qsfp_pins",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "qsfp_pins",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "qsfp_rst_l": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "qsfp_lp": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          }
+        }
+      },
       "axi_revision": {
         "vlnv": "xilinx.com:module_ref:axi_revision:1.0",
         "xci_name": "top_level_axi_revision_0_0",
@@ -7197,29 +7220,6 @@
                 "value_src": "constant"
               }
             }
-          }
-        }
-      },
-      "qsfp_pins": {
-        "vlnv": "xilinx.com:module_ref:qsfp_pins:1.0",
-        "xci_name": "top_level_qsfp_pins_0_0",
-        "xci_path": "ip/top_level_qsfp_pins_0_0/top_level_qsfp_pins_0_0.xci",
-        "inst_hier_path": "qsfp_pins",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "qsfp_pins",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "qsfp_rst_l": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
-          },
-          "qsfp_lp": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
           }
         }
       }
