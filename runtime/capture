@@ -5,7 +5,7 @@
 #
 
 if [ $(pcireg -dec 20) -ne 121475 ]; then
-    echo "The packet_capture  bitstream is not loaded into the FPGA!"
+    echo "The packet_capture bitstream is not loaded into the FPGA!"
     exit
 fi
 
