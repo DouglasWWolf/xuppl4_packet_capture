@@ -12,7 +12,7 @@ setuid_root()
 
 setuid_root getpackets
 
-sudo chmod +x rtl_version dump capture load_bitstream.sh
+sudo chmod +x dump capture load_bitstream.sh
 
 
 
