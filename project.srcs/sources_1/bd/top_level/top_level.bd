@@ -42,7 +42,8 @@
         "ethernet": {
           "cmac_usplus": "",
           "cmac_control": "",
-          "one": ""
+          "one": "",
+          "startup_delay": ""
         },
         "to_xbar_slice": "",
         "add_header": "",
@@ -65,7 +66,8 @@
         "ethernet": {
           "cmac_usplus": "",
           "cmac_control": "",
-          "one": ""
+          "one": "",
+          "startup_delay": ""
         },
         "to_xbar_slice": "",
         "add_header": "",
@@ -2089,6 +2091,43 @@
                 "xci_name": "top_level_xlconstant_0_2",
                 "xci_path": "ip/top_level_xlconstant_0_2/top_level_xlconstant_0_2.xci",
                 "inst_hier_path": "channel_0/ethernet/one"
+              },
+              "startup_delay": {
+                "vlnv": "xilinx.com:module_ref:startup_delay:1.0",
+                "xci_name": "top_level_startup_delay_0_0",
+                "xci_path": "ip/top_level_startup_delay_0_0/top_level_startup_delay_0_0.xci",
+                "inst_hier_path": "channel_0/ethernet/startup_delay",
+                "reference_info": {
+                  "ref_type": "hdl",
+                  "ref_name": "startup_delay",
+                  "boundary_crc": "0x0"
+                },
+                "ports": {
+                  "clk": {
+                    "type": "clk",
+                    "direction": "I",
+                    "parameters": {
+                      "ASSOCIATED_RESET": {
+                        "value": "reset_out",
+                        "value_src": "constant"
+                      },
+                      "CLK_DOMAIN": {
+                        "value": "top_level_init_clk",
+                        "value_src": "default_prop"
+                      }
+                    }
+                  },
+                  "reset_out": {
+                    "type": "rst",
+                    "direction": "O",
+                    "parameters": {
+                      "POLARITY": {
+                        "value": "ACTIVE_HIGH",
+                        "value_src": "constant"
+                      }
+                    }
+                  }
+                }
               }
             },
             "interface_nets": {
@@ -2161,13 +2200,20 @@
                 "ports": [
                   "init_clk",
                   "cmac_usplus/init_clk",
-                  "cmac_usplus/drp_clk"
+                  "cmac_usplus/drp_clk",
+                  "startup_delay/clk"
                 ]
               },
               "one_dout": {
                 "ports": [
                   "one/dout",
                   "cmac_control/sys_resetn_in"
+                ]
+              },
+              "startup_delay_0_reset_out": {
+                "ports": [
+                  "startup_delay/reset_out",
+                  "cmac_usplus/sys_reset"
                 ]
               }
             }
@@ -4830,6 +4876,43 @@
                 "xci_name": "top_level_one_1",
                 "xci_path": "ip/top_level_one_1/top_level_one_1.xci",
                 "inst_hier_path": "channel_1/ethernet/one"
+              },
+              "startup_delay": {
+                "vlnv": "xilinx.com:module_ref:startup_delay:1.0",
+                "xci_name": "top_level_startup_delay_1",
+                "xci_path": "ip/top_level_startup_delay_1/top_level_startup_delay_1.xci",
+                "inst_hier_path": "channel_1/ethernet/startup_delay",
+                "reference_info": {
+                  "ref_type": "hdl",
+                  "ref_name": "startup_delay",
+                  "boundary_crc": "0x0"
+                },
+                "ports": {
+                  "clk": {
+                    "type": "clk",
+                    "direction": "I",
+                    "parameters": {
+                      "ASSOCIATED_RESET": {
+                        "value": "reset_out",
+                        "value_src": "constant"
+                      },
+                      "CLK_DOMAIN": {
+                        "value": "top_level_init_clk",
+                        "value_src": "default_prop"
+                      }
+                    }
+                  },
+                  "reset_out": {
+                    "type": "rst",
+                    "direction": "O",
+                    "parameters": {
+                      "POLARITY": {
+                        "value": "ACTIVE_HIGH",
+                        "value_src": "constant"
+                      }
+                    }
+                  }
+                }
               }
             },
             "interface_nets": {
@@ -4902,13 +4985,20 @@
                 "ports": [
                   "init_clk",
                   "cmac_usplus/init_clk",
-                  "cmac_usplus/drp_clk"
+                  "cmac_usplus/drp_clk",
+                  "startup_delay/clk"
                 ]
               },
               "one_dout": {
                 "ports": [
                   "one/dout",
                   "cmac_control/sys_resetn_in"
+                ]
+              },
+              "startup_delay_reset_out": {
+                "ports": [
+                  "startup_delay/reset_out",
+                  "cmac_usplus/sys_reset"
                 ]
               }
             }
