@@ -32,32 +32,32 @@ preplace inst add_header -pg 1 -lvl 2 -x 530 -y 450 -swap {0 1 2 3 4 5 6 7 8 9 1
 preplace inst fill_ram -pg 1 -lvl 6 -x 1850 -y 510 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 39 37 38} -defaultsOSRD -pinDir M_AXI left -pinY M_AXI 0L -pinDir clk left -pinY clk 20L -pinDir reset left -pinY reset 40L -pinBusDir elapsed right -pinBusY elapsed 40R -pinDir idle right -pinY idle 0R -pinDir start_async right -pinY start_async 20R
 preplace inst packet_gate -pg 1 -lvl 1 -x 190 -y 160 -defaultsOSRD -pinDir AXIS_IN right -pinY AXIS_IN 0R -pinDir AXIS_OUT right -pinY AXIS_OUT 150R -pinDir clk right -pinY clk 170R -pinDir sys_reset left -pinY sys_reset 150L -pinDir enable_async left -pinY enable_async 170L
 preplace inst stream_to_ram -pg 1 -lvl 3 -x 890 -y 290 -defaultsOSRD -pinDir AXIS_IN left -pinY AXIS_IN 0L -pinDir M_AXI right -pinY M_AXI 0R -pinDir clk left -pinY clk 20L -pinDir sys_reset left -pinY sys_reset 40L -pinBusDir ram_blocks_written right -pinBusY ram_blocks_written 20R -pinDir out_of_ram right -pinY out_of_ram 40R
-preplace netloc clk_1 1 1 6 380 210 NJ 210 NJ 210 NJ 210 NJ 210 2040
-preplace netloc ddr4_0_c0_ddr4_ui_clk 1 2 5 700 410 1060 410 1300 590 1640 430 2040
+preplace netloc clk_1 1 1 6 360 210 NJ 210 NJ 210 NJ 210 NJ 210 2040
+preplace netloc ddr4_0_c0_ddr4_ui_clk 1 2 5 690 410 1060 410 1300 590 1630 430 2040
 preplace netloc ddr4_0_c0_init_calib_complete 1 6 1 NJ 310
-preplace netloc ddr4_c0_ddr4_ui_clk_sync_rst 1 5 1 1660 370n
+preplace netloc ddr4_c0_ddr4_ui_clk_sync_rst 1 5 1 1650 370n
 preplace netloc enable_async_1 1 0 2 20 510 NJ
 preplace netloc ethernet_stat_rx_aligned 1 6 1 NJ 160
 preplace netloc fill_ram_idle 1 6 1 NJ 510
 preplace netloc init_clk_1 1 6 1 NJ 120
-preplace netloc reset_inverter_Res 1 4 3 1320 250 1620 450 NJ
+preplace netloc reset_inverter_Res 1 4 3 1320 250 1610 450 NJ
 preplace netloc sys_sync_start_1 1 6 1 NJ 530
-preplace netloc zero_dout 1 0 6 40 410 340 570 720 570 NJ 570 NJ 570 1600J
+preplace netloc zero_dout 1 0 6 40 410 320 570 710 570 NJ 570 NJ 570 1590J
 preplace netloc C0_SYS_CLK_0_1 1 6 1 NJ 270
 preplace netloc Conn1 1 6 1 NJ 60
 preplace netloc Conn2 1 6 1 NJ 80
 preplace netloc Conn3 1 6 1 NJ 100
-preplace netloc add_header_AXIS_OUT 1 2 1 680 290n
+preplace netloc add_header_AXIS_OUT 1 2 1 670 290n
 preplace netloc axi_crossbar_M00_AXI 1 5 1 N 310
 preplace netloc axi_interconnect_0_M00_AXI 1 0 5 NJ 390 NJ 390 NJ 390 NJ 390 NJ
 preplace netloc axi_register_slice_0_M_AXI 1 4 1 N 310
 preplace netloc ddr4_0_C0_DDR4 1 6 1 NJ 290
 preplace netloc ethernet_axis_rx0 1 1 5 N 160 NJ 160 NJ 160 NJ 160 NJ
 preplace netloc fill_ram_0_M_AXI 1 5 1 N 510
-preplace netloc packet_gate_output 1 1 1 360 310n
+preplace netloc packet_gate_output 1 1 1 340 310n
 preplace netloc stream_to_ram_M_AXI 1 3 1 N 290
 levelinfo -pg 1 0 190 530 890 1180 1460 1850 2060
-pagesize -pg 1 -db -bbox -sgen -120 0 2260 730
+pagesize -pg 1 -db -bbox -sgen -120 0 2250 730
 ",
    "No Loops_ScaleFactor":"0.56938",
    "No Loops_TopLeft":"-116,-249",

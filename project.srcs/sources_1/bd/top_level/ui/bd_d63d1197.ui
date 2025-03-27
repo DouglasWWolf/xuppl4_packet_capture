@@ -12,8 +12,8 @@ preplace port S_AXI -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
 preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
 preplace port port-id_aresetn -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
 preplace portBus window_addr -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
-preplace inst aximm_window -pg 1 -lvl 2 -x 410 -y 100 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 60L -pinBusDir window_addr left -pinBusY window_addr 80L
 preplace inst axi_register_slice -pg 1 -lvl 1 -x 140 -y 60 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 40R -pinDir S_AXI left -pinY S_AXI 0L -pinDir aclk left -pinY aclk 20L -pinDir aresetn left -pinY aresetn 40L
+preplace inst aximm_window -pg 1 -lvl 2 -x 410 -y 100 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 60L -pinBusDir window_addr left -pinBusY window_addr 80L
 preplace netloc S00_ACLK_1 1 0 2 20 160 NJ
 preplace netloc aresetn_1 1 0 1 NJ 100
 preplace netloc sys_control_window_addr 1 0 2 NJ 180 NJ
@@ -21,7 +21,7 @@ preplace netloc S_AXI_1 1 0 1 NJ 60
 preplace netloc axi_register_slice_M_AXI 1 1 1 N 100
 preplace netloc aximm_window_M_AXI 1 2 1 N 100
 levelinfo -pg 1 0 140 410 580
-pagesize -pg 1 -db -bbox -sgen -190 0 680 240
+pagesize -pg 1 -db -bbox -sgen -180 0 670 240
 ",
    "No Loops_ScaleFactor":"1.0",
    "No Loops_TopLeft":"-399,-237",

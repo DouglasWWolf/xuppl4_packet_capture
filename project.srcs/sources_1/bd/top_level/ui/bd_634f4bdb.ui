@@ -59,8 +59,8 @@ preplace netloc stream_to_ram_M_AXI 1 3 1 N 290
 levelinfo -pg 1 0 190 530 890 1180 1460 1850 2060
 pagesize -pg 1 -db -bbox -sgen -120 0 2260 730
 ",
-   "No Loops_ScaleFactor":"0.56938",
-   "No Loops_TopLeft":"-116,-225",
+   "No Loops_ScaleFactor":"0.634753",
+   "No Loops_TopLeft":"-117,-173",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port S00_AXI -pg 1 -lvl 0 -x 0 -y 570 -defaultsOSRD
